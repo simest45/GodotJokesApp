@@ -1,0 +1,82 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://QuitButton.gd" type="Script" id=1]
+[ext_resource path="res://JokeButton.gd" type="Script" id=2]
+[ext_resource path="res://smile.svg" type="Texture" id=3]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -623.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 27.6282
+margin_top = -8.24734
+margin_right = 294.628
+margin_bottom = 521.753
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditHazLabel" type="Label" parent="VBoxContainer"]
+margin_top = 190.0
+margin_right = 266.0
+margin_bottom = 204.0
+text = "icanhazdadjoke.com"
+align = 1
+
+[node name="Sprite" type="Sprite" parent="VBoxContainer"]
+position = Vector2( 125.512, 127.86 )
+scale = Vector2( 0.115207, 0.104165 )
+texture = ExtResource( 3 )
+
+[node name="JokeLabel" type="Label" parent="VBoxContainer"]
+margin_top = 208.0
+margin_right = 266.0
+margin_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 5
+size_flags_vertical = 5
+custom_constants/shadow_offset_x = 2
+text = "What did one wall say to the other wall?
+I will meet you at the corner!
+"
+align = 1
+valign = 3
+autowrap = true
+
+[node name="SpacerLabel2" type="Label" parent="VBoxContainer"]
+margin_top = 260.0
+margin_right = 266.0
+margin_bottom = 274.0
+
+[node name="JokeButton" type="Button" parent="VBoxContainer"]
+margin_top = 278.0
+margin_right = 266.0
+margin_bottom = 298.0
+hint_tooltip = "Press for a new Joke!"
+text = "Another!"
+script = ExtResource( 2 )
+
+[node name="HTTPRequest" type="HTTPRequest" parent="VBoxContainer/JokeButton"]
+use_threads = true
+
+[node name="SpacerLabel" type="Label" parent="VBoxContainer"]
+margin_top = 302.0
+margin_right = 266.0
+margin_bottom = 316.0
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+margin_top = 320.0
+margin_right = 266.0
+margin_bottom = 340.0
+hint_tooltip = "Quit the app."
+text = "Quit!"
+script = ExtResource( 1 )
+[connection signal="pressed" from="VBoxContainer/JokeButton" to="VBoxContainer/JokeButton" method="_on_JokeButton_pressed"]
+[connection signal="button_up" from="VBoxContainer/QuitButton" to="VBoxContainer/QuitButton" method="_on_QuitButton_button_up"]
